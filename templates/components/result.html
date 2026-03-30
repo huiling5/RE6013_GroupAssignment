@@ -1,0 +1,16 @@
+<div id="result-section"></div>
+
+<script>
+function displayResult(json) {
+    const section = document.getElementById("result-section");
+
+    section.innerHTML = `
+        <h2>Personalised Plan</h2>
+        <p><b>Goal:</b> ${json.goal || "-"}</p>
+        <p><b>Affordability:</b> ${json.affordability || "-"}</p>
+        <p><b>Recommended Action:</b> ${json.recommended_action || "-"}</p>
+        <p><b>Monthly Savings Target:</b> ${json.monthly_savings_target || "-"}</p>
+        <p><b>Advice:</b> ${json.advice || "-"}</p>
+    `;
+}
+</script>

@@ -1,0 +1,72 @@
+<h2>Financial Info</h2>
+
+<div class="form-group">
+    <div class="form-row">
+        <label>Balance</label>
+        <input id="balance" placeholder="Input your current balance">
+    </div>
+
+    <div class="form-row">
+        <label>Monthly Income</label>
+        <input id="income" placeholder="Input your monthly income">
+    </div>
+</div>
+
+<h3>Expenses</h3>
+
+<div id="expenses-container"></div>
+
+<div class="form-buttons">
+    <button onclick="addExpense()">+ Add Expense</button>
+    <button onclick="startChat()">Set Financial Data</button>
+</div>
+
+<script>
+function addExpense(name = "", value = "") {
+    const container = document.getElementById("expenses-container");
+
+    const div = document.createElement("div");
+    div.className = "expense-row";
+
+    div.innerHTML = `
+        <input class="expense-name" placeholder="Category" value="${name}">
+        <input class="expense-value" type="number" placeholder="Amount" value="${value}">
+        <button onclick="removeExpense(this)">❌</button>
+    `;
+
+    container.appendChild(div);
+}
+
+function removeExpense(button) {
+    button.parentElement.remove();
+}
+
+async function startChat() {
+    const expenseRows = document.querySelectorAll(".expense-row");
+    const expenses = {};
+
+    expenseRows.forEach(row => {
+        const name = row.querySelector(".expense-name").value.trim();
+        const value = Number(row.querySelector(".expense-value").value);
+
+        if (name && value) {
+            expenses[name] = value;
+        }
+    });
+
+    const data = {
+        balance: Number(document.getElementById("balance").value),
+        income: Number(document.getElementById("income").value),
+        expenses: expenses
+    };
+
+    await fetch("/set_financial_data", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    financialDataSet = true;
+    appendMessage("AI", "Got your financial data! Ask me anything 👍");
+}
+</script>

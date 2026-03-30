@@ -1,0 +1,80 @@
+<h2>Chat</h2>
+
+<div id="chat-box"></div>
+
+<div class="chat-input">
+    <input id="user-input" placeholder="Ask something...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+async function sendMessage() {
+    if (!financialDataSet) {
+        alert("Please enter your financial data first!");
+        return;
+    }
+
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    appendMessage("You", message);
+
+    const res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message})
+    });
+
+    const data = await res.json();
+
+    let cleanReply = data.reply;
+
+    cleanReply = cleanReply.replace(/```json[\s\S]*?```/g, "");
+    cleanReply = cleanReply.replace(/{[\s\S]*}/g, "");
+
+    const lines = cleanReply.split("\n");
+    let filteredLines = [];
+
+    for (let i = 0; i < lines.length; i++) {
+        const current = lines[i].trim();
+
+        if (current !== "") {
+            filteredLines.push(lines[i]);
+        } else {
+            const prev = filteredLines.length > 0 ? filteredLines[filteredLines.length - 1].trim() : "";
+            const next = lines[i + 1] ? lines[i + 1].trim() : "";
+
+            if (prev !== "" && next !== "") {
+                filteredLines.push("");
+            }
+        }
+    }
+
+    cleanReply = filteredLines.join("\n").trim();
+
+    cleanReply = cleanReply.replace(/\* /g, "• ");
+    cleanReply = cleanReply.replace(/\n/g, "<br>");
+
+    appendMessage("AI", cleanReply);
+
+    if (data.json) {
+        displayResult(data.json);
+    }
+
+    input.value = "";
+}
+
+function appendMessage(sender, text) {
+    const box = document.getElementById("chat-box");
+
+    box.innerHTML += `
+        <div class="message">
+            <b>${sender}:</b><br>${text}
+        </div>
+    `;
+
+    box.scrollTop = box.scrollHeight;
+}
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Financial Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>AI Financial Assistant</h1>
+
+<div class="container">
+    <div class="left-panel">
+        {% include "components/form.html" %}
+    </div>
+
+    <div class="right-panel">
+        {% include "components/chat.html" %}
+        {% include "components/result.html" %}
+    </div>
+</div>
+
+<script>
+let financialDataSet = false;
+</script>
+
+</body>
+</html>
