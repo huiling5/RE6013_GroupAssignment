@@ -152,6 +152,7 @@ button:hover {
 
 .delete-btn:hover {
     color: red;
+    background: transparent
 }
 
 .form-group {
