@@ -3,16 +3,22 @@
 <div class="form-group">
     <div class="form-row">
         <label>Balance</label>
-        <input id="balance" placeholder="Input your current balance">
+        <input id="balance" type="number" placeholder="Input your current balance">
     </div>
 
     <div class="form-row">
         <label>Monthly Income</label>
-        <input id="income" placeholder="Input your monthly income">
+        <input id="income" type="number" placeholder="Input your monthly income">
     </div>
 </div>
 
 <h3>Expenses</h3>
+
+<div class="expense-header">
+    <span>Category</span>
+    <span>Amount ($)</span>
+    <span></span>
+</div>
 
 <div id="expenses-container"></div>
 
@@ -29,9 +35,9 @@ function addExpense(name = "", value = "") {
     div.className = "expense-row";
 
     div.innerHTML = `
-        <input class="expense-name" placeholder="Category" value="${name}">
-        <input class="expense-value" type="number" placeholder="Amount" value="${value}">
-        <button onclick="removeExpense(this)">❌</button>
+        <input class="expense-name" placeholder="e.g. Food, Rent" value="${name}">
+        <input class="expense-value" type="number" placeholder="0" value="${value}">
+        <button class="delete-btn" onclick="removeExpense(this)">✕</button>
     `;
 
     container.appendChild(div);

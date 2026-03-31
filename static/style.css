@@ -59,3 +59,48 @@ button {
     font-family: monospace;
     white-space: pre-wrap;
 }
+
+.expense-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 40px;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.expense-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 40px;
+    column-gap: 25px;
+    row-gap: 10px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.expense-name,
+.expense-value {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    height: 38px;
+    box-sizing: border-box;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #999;
+
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+}
+
+.delete-btn:hover {
+    color: red;
+}

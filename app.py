@@ -34,7 +34,7 @@ def chat():
     system_prompt = f"""
         You are a financial assistant.
 
-        User financial data:
+        User financial data (all amounts are in monetary terms, e.g. dollars and not in percentages):
         {json.dumps(financial_data)}
 
         Notes:
