@@ -1,16 +1,26 @@
-<div id="result-section"></div>
+<div id="result-section" class="result-card" style="display: none;"></div>
 
 <script>
 function displayResult(json) {
     const section = document.getElementById("result-section");
+    section.style.display = "block";
 
     section.innerHTML = `
         <h2>Personalised Plan</h2>
+
         <p><b>Goal:</b> ${json.goal || "-"}</p>
-        <p><b>Affordability:</b> ${json.affordability || "-"}</p>
+
+        <p><b>Affordability:</b> 
+            <span style="color:${json.affordability === 'Affordable' ? 'green' : 'red'}">
+                ${json.affordability || "-"}
+            </span>
+        </p>
+
         <p><b>Recommended Action:</b> ${json.recommended_action || "-"}</p>
-        <p><b>Monthly Savings Target:</b> ${json.monthly_savings_target || "-"}</p>
-        <p><b>Advice:</b> ${json.advice || "-"}</p>
+
+        <p><b>Monthly Savings:</b> $${json.monthly_savings_target || "-"}</p>
+
+        <p><b>Advice:</b><br>${json.advice || "-"}</p>
     `;
 }
 </script>

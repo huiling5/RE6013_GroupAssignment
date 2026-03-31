@@ -57,7 +57,7 @@ async function sendMessage() {
     cleanReply = cleanReply.replace(/\* /g, "• ");
     cleanReply = cleanReply.replace(/\n/g, "<br>");
 
-    appendMessage("AI", cleanReply);
+    appendMessage("Assistant", cleanReply);
 
     if (data.json) {
         displayResult(data.json);
@@ -69,9 +69,16 @@ async function sendMessage() {
 function appendMessage(sender, text) {
     const box = document.getElementById("chat-box");
 
+    const isUser = sender === "You";
+
     box.innerHTML += `
-        <div class="message">
-            <b>${sender}:</b><br>${text}
+        <div class="message" style="
+            background: ${isUser ? '#4f8cff' : '#f1f3f5'};
+            color: ${isUser ? 'white' : 'black'};
+            margin-left: ${isUser ? 'auto' : '0'};
+        ">
+            <b>${sender}</b>
+            ${text}
         </div>
     `;
 

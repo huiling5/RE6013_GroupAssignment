@@ -3,11 +3,29 @@
 <head>
     <title>AI Financial Assistant</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>AI Financial Assistant</h1>
+<div class="page-header">
 
+    <h1>AI Financial Assistant</h1>
+
+    <div class="instructions">
+        <div class="instructions-header" onclick="toggleInstructions()">
+            Instructions ▾
+        </div>
+
+        <div class="instructions-content" id="instructions-content">
+            <ul>
+                <li>Enter your financial details (balance, income, expenses)</li>
+                <li>Click "Set Financial Data"</li>
+                <li>Ask the chatbot any financial questions you may have.</li>
+                <li>The AI will guide you and generate a personalised plan</li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="left-panel">
         {% include "components/form.html" %}
@@ -21,6 +39,17 @@
 
 <script>
 let financialDataSet = false;
+
+function toggleInstructions() {
+    const content = document.getElementById("instructions-content");
+
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+    } else {
+        content.style.display = "none";
+    }
+}
+
 </script>
 
 </body>

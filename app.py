@@ -67,8 +67,8 @@ def chat():
         - Do NOT explain the JSON
         - Do NOT include text after the JSON
         - JSON must be the LAST thing in the response
-        - Before the JSON, end your message with:
-        "Your personalised plan has been generated. Please see below for details."
+        - Before the JSON, end your message with a afirmitive message such as "Your personalised plan has been generated. Please see below for details.". 
+        - Please edit the afirmitive message where necessary so that it flows naturally from the previous chat response. For example avoid claiming to need more info to make a plan in the chat section, then saying that a plan has been generated immediately after.
     """
 
     response = client.chat.completions.create(
