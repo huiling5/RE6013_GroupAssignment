@@ -2,13 +2,12 @@
 
 <div class="form-group">
     <div class="form-row">
-        <label>Balance</label>
-        <input id="balance" type="number" placeholder="Input your current balance">
-    </div>
-
-    <div class="form-row">
         <label>Monthly Income</label>
         <input id="income" type="number" placeholder="Input your monthly income">
+    </div>
+    <div class="form-row">
+        <label>Balance</label>
+        <input id="balance" type="number" placeholder="Input your current balance">
     </div>
 </div>
 
@@ -23,8 +22,8 @@
 <div id="expenses-container"></div>
 
 <div class="form-buttons">
-    <button onclick="addExpense()">+ Add Expense</button>
-    <button onclick="startChat()">Set Financial Data</button>
+    <button id="add_expense" onclick="addExpense()">+ Add Expense</button>
+    <button id="set_financial_data" onclick="startChat()">Set Financial Data</button>
 </div>
 
 <script>
@@ -42,6 +41,12 @@ function addExpense(name = "", value = "") {
 
     container.appendChild(div);
 }
+
+document.addEventListener('wheel', function(e) {
+    if (document.activeElement && document.activeElement.type === 'number') {
+        e.preventDefault();
+    }
+}, { passive: false });
 
 function removeExpense(button) {
     button.parentElement.remove();

@@ -45,6 +45,16 @@ input {
     transition: 0.2s;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 input:focus {
     outline: none;
     border-color: #4f8cff;
@@ -57,6 +67,19 @@ button {
     border: none;
     background: #4f8cff;
     color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#add_expense {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: #4f8cff;
+    border-width: 1px;
+    border-style: solid;
+    background: none;
+    color: black;
     font-weight: 500;
     cursor: pointer;
     transition: 0.2s;
