@@ -10,11 +10,7 @@ function displayResult(json) {
 
         <p><b>Goal:</b> ${json.goal || "-"}</p>
 
-        <p><b>Affordability:</b> 
-            <span style="color:${json.affordability === 'Affordable' ? 'green' : 'red'}">
-                ${json.affordability || "-"}
-            </span>
-        </p>
+        <p><b>Affordability:</b> ${json.affordability || "-"}</p>
 
         <p><b>Recommended Action:</b> ${json.recommended_action || "-"}</p>
 
